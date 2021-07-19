@@ -3,17 +3,26 @@
 # Replace YOUR-USERNAME and YOUR-PING-ID below. You need a Healthcheck.io Account
 # In line 14 you can customize the max Seconds which the TIP might differ from the reference TIP
 
+CARDANO_CLI_PATH=                                       #Set the name which was used for Installing CNODE. - e.g. /home/YOUR-USERNAME/.cabal/bin/cardano-cli
+                                                        #Make sure to replace YOUR-USER
+HEALTHCHECKS_PING_URL=                                  #Copy and Paste the full Ping URL from Healthcheks.IO - e.g. https://hc-ping.com/aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee
+ACCEPTED_TIP_DIFF=60                                    #How many seconds are OK before starting to not send OK signals to Healthcheks?
+
+######################################
+# Do NOT modify code below           #
+######################################
+
 export CARDANO_NODE_SOCKET_PATH=/opt/cardano/cnode/sockets/node0.socket
 
-customCurrentSlotNoString=$(/home/YOUR-USERNAME/.cabal/bin/cardano-cli shelley query tip --mainnet | grep -Po '\"slot\": \K[0-9]+')
+customCurrentSlotNoString=$($CARDANO_CLI_PATH query tip --mainnet | grep -Po '\"slot\": \K[0-9]+')
 customCurrentSlotNo=$(expr $customCurrentSlotNoString + 0)
 
 customRefSlotNo=$(expr $(printf '%(%s)T\n' -1) - 1591566291)
 customDiff=$(expr $customRefSlotNo - $customCurrentSlotNo)
 
-if [[ $customDiff -le 60 ]]
+if [[ $customDiff -le $ACCEPTED_TIP_DIFF ]]
 then
   echo "all good sending ping"
-  curl -m 10 --retry 5 https://hc-ping.com/YOUR-PING-ID
+  curl -m 10 --retry 5 $HEALTHCHECKS_PING_URL
 exit
 fi
