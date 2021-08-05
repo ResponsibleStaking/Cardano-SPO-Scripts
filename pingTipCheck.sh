@@ -1,7 +1,6 @@
 #!/usr/bin/env bash
 # shellcheck disable=SC2034,SC2086,SC2230,SC2009,SC2206,SC2062,SC2059
 # Replace YOUR-USERNAME and YOUR-PING-ID below. You need a Healthcheck.io Account
-# In line 14 you can customize the max Seconds which the TIP might differ from the reference TIP
 
 CARDANO_CLI_PATH=                                       #Set the name which was used for Installing CNODE. - e.g. /home/YOUR-USERNAME/.cabal/bin/cardano-cli
                                                         #Make sure to replace YOUR-USER
