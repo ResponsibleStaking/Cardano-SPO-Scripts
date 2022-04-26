@@ -4,7 +4,7 @@
 
 CARDANO_CLI_PATH=                                       #Set the name which was used for Installing CNODE. - e.g. /home/YOUR-USERNAME/.cabal/bin/cardano-cli
                                                         #Make sure to replace YOUR-USER
-HEALTHCHECKS_PING_URL=                                  #Copy and Paste the full Ping URL from Healthcheks.IO - e.g. https://hc-ping.com/aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee
+HEALTHCHECKS_PING_URL=                                  #Copy and Paste the full Ping URL from Healthchecks.IO - e.g. https://hc-ping.com/aaaaaaaa-bbbb-cccc-dddd-eeeeeeeeeeee
 ACCEPTED_TIP_DIFF=60                                    #How many seconds are OK before starting to not send OK signals to Healthcheks?
 
 ######################################
